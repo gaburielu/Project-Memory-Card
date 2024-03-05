@@ -8,6 +8,7 @@ import "./styles/App.css";
 function App() {
   const [loading, setLoading] = useState(true);
   const [films, setFilms] = useState([]);
+  const [difficulty, setDifficulty] = useState(0);
   const apiUrl = "https://ghibliapi.vercel.app/films";
 
   useEffect(() => {
@@ -24,7 +25,7 @@ function App() {
           console.error(`Error fetching data: ${error.message}`);
         }
       };
- 
+
       fetchData();
 
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -35,9 +36,21 @@ function App() {
     asyncOperation();
   }, []);
 
+  useEffect(() => {
+    
+  }, [difficulty]);
+
   return (
     <div>
-      {loading ? <Loading /> : <Game films={films} />}
+      {loading ? (
+        <Loading />
+      ) : (
+        <Game
+          films={films}
+          difficulty={difficulty}
+          setDifficulty={setDifficulty}
+        />
+      )}
     </div>
   );
 }

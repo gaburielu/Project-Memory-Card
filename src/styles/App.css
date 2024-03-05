@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "Ghibli";
+  src: url("../assets/Ghibli.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "GhibliBold";
+  src: url("../assets/GhibliBold.otf") format("truetype");
+}
+
 body {
   width: 100vw;
   height: 200vh;
@@ -5,4 +15,5 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: "GhibliBold", "Ghibli";
 }

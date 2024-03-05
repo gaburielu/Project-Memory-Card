@@ -1,27 +1,35 @@
 import { useState, useEffect } from "react";
 import { resetWatch } from "./utils";
 import Cards from "./Card";
+import Prompt from "./Difficulty";
 
-const Game = ({ films }) => {
+const Game = ({ films, difficulty, setDifficulty }) => {
   const [gameRound, setGame] = useState(false);
-  const [difficulty, setDifficulty] = useState(0);
   const [gameFilms, setGameFilms] = useState([]);
 
   const handleButtonClick = () => {
     if (difficulty === 0) {
       alert("Choose a difficulty");
       console.log(gameFilms);
-      handleDifficulty();
     } else {
       const updatedFilms = resetWatch(films);
       setGameFilms(updatedFilms);
       setGame(!gameRound);
     }
   };
-
-  const handleDifficulty = () => {
+  const setDifficultyToEasy = () => {
+    setDifficulty(6);
+    console.log(difficulty)
+  }
+  const setDifficultyToMedium = () => {
     setDifficulty(12);
-  };
+    console.log(difficulty)
+  }
+
+  const setDifficultyToHard = () => {
+    setDifficulty(20);
+    console.log(difficulty)
+  }
 
   return (
     <div>
@@ -29,12 +37,20 @@ const Game = ({ films }) => {
         <Cards gameFilms={gameFilms} />
       ) : (
         <>
-          <p>{String(gameRound)}</p>
-          <button onClick={handleButtonClick}>test</button>
+          <Prompt
+            gameRound={gameRound}
+            difficulty={difficulty}
+            handleButtonClick={handleButtonClick}
+            setDifficultyToEasy={setDifficultyToEasy}
+            setDifficultyToMedium={setDifficultyToMedium}
+            setDifficultyToHard={setDifficultyToHard}
+          />
         </>
       )}
     </div>
   );
 };
+
+
 
 export default Game;
