@@ -1,0 +1,8 @@
+body {
+  width: 100vw;
+  height: 200vh;
+  background-image: url("/src/assets/tranquil-summer-sunset-mountain-silhouette-generated-by-ai.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
