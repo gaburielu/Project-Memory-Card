@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import Loading from "./components/Loading";
+import { Loading } from "./components/Loading";
 import Game from "./components/Container";
 import axios from "axios";
-import { resetWatch } from "./components/utils";
+import { resetWatch, getRandomSelection, shuffle } from "./components/utils";
 import "./styles/App.css";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [films, setFilms] = useState([]);
+  const [gameFilms, setGameFilms] = useState([]);
   const [difficulty, setDifficulty] = useState(0);
   const apiUrl = "https://ghibliapi.vercel.app/films";
 
@@ -21,15 +22,14 @@ function App() {
         try {
           const response = await axios.get(apiUrl);
           setFilms(response.data);
+          setFilms((prev) => shuffle([...prev]));
         } catch (error) {
           console.error(`Error fetching data: ${error.message}`);
         }
       };
 
       fetchData();
-
       await new Promise((resolve) => setTimeout(resolve, 2000));
-
       setLoading(false);
     };
 
@@ -37,7 +37,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    
+    const updatedFilms = getRandomSelection(difficulty, resetWatch(films));
+    setGameFilms(updatedFilms);
   }, [difficulty]);
 
   return (
@@ -46,7 +47,8 @@ function App() {
         <Loading />
       ) : (
         <Game
-          films={films}
+          gameFilms={gameFilms}
+          setGameFilms={setGameFilms}
           difficulty={difficulty}
           setDifficulty={setDifficulty}
         />
@@ -56,12 +58,3 @@ function App() {
 }
 
 export default App;
-
-//     <div>
-//       <h1>Film List</h1>
-//       <ul>
-//         {films.map((film) => (
-//           <li key={film.id}>{film.title}</li>
-//         ))}
-//       </ul>
-//     </div>

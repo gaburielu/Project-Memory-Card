@@ -1,22 +1,21 @@
-const Cards = ({ gameFilms }) => {
+import React, { useState } from "react";
+// import './Card.css';
+
+const Card = ({ gameFilms, handleCardClick }) => {
   return (
-    <div>
-      <ul>
-        {gameFilms.map((film) => (
-          <li key={film.id}>
-            <h2>{film.title}</h2>
-            <img
-              src={film.image}
-              alt={`${film.title} Poster`}
-              style={{ maxWidth: "200px" }}
-            />
-            <p>Watched? {String(film.watched)}</p>
-            <p>{film.description}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="card-container">
+      {gameFilms.map((film) => (
+        <div key={film.id}>
+          <img
+            src={film.image}
+            alt={`${film.title} Poster`}
+            style={{ maxWidth: "200px" }}
+            onClick={()=>handleCardClick(film.id, film.watched)}
+          />
+        </div>
+      ))}
     </div>
   );
 };
 
-export default Cards;
+export default Card;

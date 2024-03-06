@@ -1,9 +1,14 @@
 function resetWatch(arr) {
-  let newArr = arr.map((item) => ({
+  let addWatched = arr.map((item) => ({
     ...item,
     watched: false,
   }));
-  return newArr;
+  let addTemplateImg = addWatched.map((item) => ({
+    ...item,
+    templateImg: "src/assets/Ghibli-card.png",
+  }));
+
+  return addTemplateImg;
 }
 
 function shuffle(arr) {
@@ -11,10 +16,8 @@ function shuffle(arr) {
 }
 
 function getRandomSelection(number, objArray) {
-  const shuffledArray = objArray.sort(() => Math.random() - 0.5);
-  const selectedObjects = shuffledArray.slice(0, number);
-
+  const selectedObjects = shuffle(objArray.slice(0, number));
   return selectedObjects;
 }
 
-export { resetWatch };
+export { resetWatch, getRandomSelection, shuffle };
