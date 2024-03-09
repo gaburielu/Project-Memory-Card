@@ -4,6 +4,7 @@ import Prompt from "./Difficulty";
 import { resetWatch } from "./utils";
 import { PlayAgain } from "./Loading";
 
+
 const Game = ({
   gameFilms,
   setGameFilms,
