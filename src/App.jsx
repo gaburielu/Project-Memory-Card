@@ -52,6 +52,7 @@ function App() {
           setHighScore={setHighScore}
         />
       )}
+      <div className="hidden-div"></div>
     </>
   );
 }
