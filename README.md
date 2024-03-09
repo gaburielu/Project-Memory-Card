@@ -1,9 +1,9 @@
 # Ghibli Memory Card
 
-My Awesome Project
-Write a short sentence or two about this project and what it does. Be sure to include a link and a screenshot (we're front end devs so we can actually see our work!).
+Ghibli Memory Card
+This Project serve as a lesson for using ReactJS, primarily in using react useEffect and asynchronous function with React. I choose Ghibli as a theme because I love these movies when I was a kid.
 
-Link to project: http://recruiters-love-seeing-live-demos.com/
+Link to project: https://ghibli-memory-card.netlify.app/
 
 alt tag
 

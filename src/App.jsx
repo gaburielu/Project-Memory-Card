@@ -15,6 +15,9 @@ function App() {
 
   useEffect(() => {
     const asyncOperation = async () => {
+      const image = new Image();
+      image.src = "src/assets/Ghibli-card.png";
+      await image.decode();
 
       const fetchData = async () => {
         try {
