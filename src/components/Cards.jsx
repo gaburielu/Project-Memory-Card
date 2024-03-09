@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
-import TemplateImg from "./TemplateImg";
 import { shuffle } from "./utils";
 import "../styles/cards.css";
 
-const Cards = ({ gameFilms, setGameFilms, difficulty, setGame }) => {
-  let [score, setScore] = useState(0);
+const Cards = ({
+  gameFilms,
+  setGameFilms,
+  difficulty,
+  setGame,
+  score,
+  setScore,
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleCardClick = (id, watched) => {
@@ -15,35 +20,31 @@ const Cards = ({ gameFilms, setGameFilms, difficulty, setGame }) => {
       setGameFilms((prev) =>
         prev.map((film) => (film.id === id ? { ...film, watched: true } : film))
       );
+    } else if (score == difficulty - 1) {
+      setScore((prevScore) => prevScore + 1);
+      setGame("play-again");
     } else {
       setGame("play-again");
-      alert("end");
     }
     asyncOperation();
   };
 
   const asyncOperation = async () => {
     setGameFilms((prev) => shuffle([...prev]));
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsFlipped(false);
   };
 
-  useEffect(() => {
-    console.log(gameFilms);
-  }, [gameFilms]);
-
   return (
-    <div>
-      <p>{score}</p>
-      <div >
-        {!isFlipped ? (
-          <Card
-            gameFilms={gameFilms}
-            handleCardClick={(id, watched) => handleCardClick(id, watched)}
-          />
-        ) : (
-          <TemplateImg gameFilms={gameFilms} />
-        )}
+    <div className="content">
+      <div className="card-container">
+        <p>Current Score: {score}</p>
+        <Card
+          className={!isFlipped ? "flipped" : ""}
+          gameFilms={gameFilms}
+          handleCardClick={(id, watched) => handleCardClick(id, watched)}
+          isFlipped={isFlipped}
+        />
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ function App() {
   const [films, setFilms] = useState([]);
   const [gameFilms, setGameFilms] = useState([]);
   const [difficulty, setDifficulty] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const apiUrl = "https://ghibliapi.vercel.app/films";
 
   useEffect(() => {
@@ -27,7 +28,6 @@ function App() {
           console.error(`Error fetching data: ${error.message}`);
         }
       };
-
       fetchData();
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setLoading(false);
@@ -42,7 +42,7 @@ function App() {
   }, [difficulty]);
 
   return (
-    <div>
+    <>
       {loading ? (
         <Loading />
       ) : (
@@ -51,9 +51,11 @@ function App() {
           setGameFilms={setGameFilms}
           difficulty={difficulty}
           setDifficulty={setDifficulty}
+          highScore={highScore}
+          setHighScore={setHighScore}
         />
       )}
-    </div>
+    </>
   );
 }
 

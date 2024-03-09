@@ -1,21 +1,20 @@
-import React, { useState } from "react";
-// import './Card.css';
+import React from "react";
+import "../styles/cards.css";
 
-const Card = ({ gameFilms, handleCardClick }) => {
+const Card = ({ gameFilms, handleCardClick, isFlipped }) => {
   return (
-    <div className="card-container">
+    <div className={`card ${isFlipped ? "flipped" : ""}`}>
       {gameFilms.map((film) => (
-        <div key={film.id}>
-          <img
-            src={film.image}
-            alt={`${film.title} Poster`}
-            style={{ maxWidth: "200px" }}
-            onClick={()=>handleCardClick(film.id, film.watched)}
-          />
-        </div>
+        <img
+          key={film.id}
+          src={!isFlipped ? film.image : film.templateImg}
+          alt={`${film.title} Poster`}
+          onClick={() => handleCardClick(film.id, film.watched)}
+        />
       ))}
     </div>
   );
 };
 
 export default Card;
+
