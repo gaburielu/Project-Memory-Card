@@ -7,7 +7,7 @@ const Card = ({ gameFilms, handleCardClick, isFlipped }) => {
       {gameFilms.map((film) => (
         <img
           key={film.id}
-          src={!isFlipped ? film.image : "src/assets/Ghibli-card.png"}
+          src={!isFlipped ? film.image : "public/Ghibli-card.png"}
           alt={`${film.title} Poster`}
           onClick={() => handleCardClick(film.id, film.watched)}
         />

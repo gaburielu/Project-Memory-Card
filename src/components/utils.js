@@ -6,7 +6,7 @@ function resetWatch(arr) {
   }));
   let addTemplateImg = addWatched.map((item) => ({
     ...item,
-    templateImg: "src/assets/Ghibli-card.png",
+    templateImg: "public/Ghibli-card.png",
   }));
 
   return addTemplateImg;
