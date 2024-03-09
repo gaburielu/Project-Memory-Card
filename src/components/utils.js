@@ -26,6 +26,4 @@ function getRandomSelection(number, objArray) {
   return selectedObjects;
 }
 
-asyncOperation();
-
 export { resetWatch, getRandomSelection, shuffle };
