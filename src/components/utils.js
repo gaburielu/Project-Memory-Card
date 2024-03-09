@@ -1,8 +1,3 @@
-const asyncOperation = async () => {
-  const image = new Image();
-  image.src = "src/assets/Ghibli-card.png";
-  await image.decode();
-};
 
 function resetWatch(arr) {
   let addWatched = arr.map((item) => ({
